@@ -3,7 +3,6 @@ mkdir -p ./data
 mkdir -p ./data/invivo
 curl -L "https://dataportal.brainminds.jp/download/4822?wpdmdl=4822" -o ./data/invivo/i_Individual_List.zip
 curl -L "https://dataportal.brainminds.jp/download/4846?wpdmdl=4846" -o ./data/invivo/i_DiffusionSC.zip
-curl -L "https://dataportal.brainminds.jp/download/4848?wpdmdl=4848" -o ./data/invivo/i_AwakeFC.zip
 curl -L "https://dataportal.brainminds.jp/download/7994?wpdmdl=7994" -o ./data/invivo/i_Variables_gm.zip
 find ./data/invivo -name \*.zip -exec unzip {} -d ./data/invivo/ \; -exec rm {} \;
 
