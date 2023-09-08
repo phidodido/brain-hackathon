@@ -29,13 +29,12 @@ def make_counts(df: pd.DataFrame, variable: str,
     number_cols = get_numerical_columns(df)
         
     if variable in number_cols:
-        vals = get_bins(df[groupby], how='center', bins=bins)
-        ssv = pd.Series(vals)
+        vals = get_bins(df[variable], how='center', bins=bins)
+        ssv = pd.Series(vals, name=variable)
     else:
         ssv = df[variable]
     
     ss = ssv.value_counts()
-    ss.name = variable
     
     if len(ss) > top:
         ss = ss.sort_values(ascending=False)[:top]

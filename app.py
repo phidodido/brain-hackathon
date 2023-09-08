@@ -42,16 +42,25 @@ with col2:
 with col3:
     groupby = st.selectbox(
         'Groupby',
-        [x for x in df.columns if x != variable],
+        df.columns,
         index=2
     )
 
 st.text('')
 
-ss = analysis.make_groupby(df, variable, groupby)
-dfs = ss.to_frame().reset_index()
 
-st.text('')
-
+if variable == groupby:
+    ss = analysis.make_counts(df, variable)
+    print(ss)
+    dfs = ss.to_frame().reset_index()
+    dfs.columns = [variable, 'count']
+    x = variable
+    y = None
+else:
+    ss = analysis.make_groupby(df, variable, groupby)
+    dfs = ss.to_frame().reset_index()
+    x = groupby
+    y = variable
+    
 st.dataframe(dfs)
-st.bar_chart(data=dfs, x=groupby, y=variable)
+st.bar_chart(data=dfs, x=x, y=y)
